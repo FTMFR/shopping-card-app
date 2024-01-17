@@ -1,5 +1,7 @@
 # Getting Started with Create React App
 
+this project is about shopping card that common in online shops site and this project is dynamically, almost!
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
