@@ -1,0 +1,24 @@
+.content {
+    width: 100%;
+    background-image: url(../../../public/img/HeaderBackground.jpg);
+    height: 55px;
+    background-position: center;
+    object-fit: cover;
+    padding: 10px 0;
+
+    .container {
+        width: 80%;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        margin: 0 auto;
+        filter: opacity(70%);
+        border-radius: 15px;
+
+        p {
+            cursor: pointer;
+        }
+    }
+
+}
