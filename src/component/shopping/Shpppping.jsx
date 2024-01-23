@@ -14,35 +14,58 @@ const shopListIcon = [
 const Shpppping = () => {
   const [store, setStore] = useState([]);
 
-  const onClickHandler = (e) => {
-    const index = e.target.value - 1;
+  const onClickHandler = (productId) => {
+    const selectedProduct = shopListIcon.find((item) => item.id === productId);
 
-    const listStore = {
-      img: shopListIcon[index].img,
-      name: shopListIcon[index].name,
-      price: shopListIcon[index].price,
-    };
+    if (selectedProduct) {
+      const listStore = {
+        id: selectedProduct.id,
+        img: selectedProduct.img,
+        name: selectedProduct.name,
+        price: selectedProduct.price,
+      };
+      setStore([...store, listStore]);
+    }
+  };
 
-    setStore([...store, listStore]);
+  const removeHandler = (productId) => {
+    let removed = false;
+
+    const updatedList = store.filter((item) => {
+      if (item.id === productId && !removed) {
+        removed = true;
+        return false;
+      }
+      return true;
+    });
+
+    setStore(updatedList);
+  };
+
+  const emptyHandler = () => {
+    setStore([]);
   };
 
   return (
     <>
       <div className="contentSection">
-        {shopListIcon.map((item) => (
-          <div className="cont" key={item.id}>
+        {shopListIcon.map((item, index) => (
+          <div className="cont" key={index}>
             <p>{item.name}</p>
             <img src={item.img} alt={item.name} />
             <div className="footer">
               <div className="price">{item.price}</div>
-              <button value={item.id} onClick={(e) => onClickHandler(e)}>
+              <button value={item.id} onClick={(productId) => onClickHandler(item.id)}>
                 Add to Card
               </button>
             </div>
           </div>
         ))}
       </div>
-      <Cart shopListIcon={store} />
+      <Cart shopListIcon={store} onRemove={removeHandler} />
+      <button className="empty" onClick={emptyHandler}>
+        Empty Cart
+      </button>
     </>
   );
 };

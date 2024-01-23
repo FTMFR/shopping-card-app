@@ -1,7 +1,7 @@
 import React from "react";
 import "./cart.scss";
 
-const Cart = ({ shopListIcon }) => {
+const Cart = ({ shopListIcon, onRemove }) => {
   return (
     <div className="cart">
       <div className="headers">
@@ -19,23 +19,20 @@ const Cart = ({ shopListIcon }) => {
         </div>
       </div>
 
-      {shopListIcon.map((item) => (
-        <>
-          <div className="cartComp">
-            <div className="body">
-              <img src={item.img} alt={item.name} />
-              <p>{item.name}</p>
-            </div>
-            <div className="price">{item.price}</div>
-            <div className="btn">
-              <button>REMOVE</button>
-            </div>
+      {shopListIcon.map((item,index) => (
+        <div className="cartComp" key={index}>
+          <div className="body">
+            <img src={item.img} alt={item.name} />
+            <p>{item.name}</p>
           </div>
-          <div className="hr">
-
-            <hr />
+          <div className="price">{item.price}</div>
+          <div className="btn">
+            <button value={item.id} onClick={(id) => onRemove(item.id)}>
+              REMOVE
+            </button>
           </div>
-        </>
+          
+        </div>
       ))}
     </div>
   );
